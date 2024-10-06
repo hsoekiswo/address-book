@@ -6,17 +6,99 @@
     <title>Address Book</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
-        @layer utilities {
-            .form-auto {
+        @layer base {
+            /* Custom base layer styling for table */
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f4f4f4;
+                color: #333;
+                font-weight: bold;
+            }
+
+            /* Hover effect for rows */
+            tr:hover {
+                background-color: #f2f2f2;
+            }
+
+            input {
                 border: 2px solid #d1d5db;
                 border-radius: 0.375rem;
                 padding: 0.5rem;
                 margin-bottom: 1rem;
                 outline: none;
             }
-            .label-auto {
+
+            label {
                 margin-bottom: 1rem;
             }
+
+            aside {
+                background-color: #f9fafb;
+                padding: 20px;
+                border-radius: 8px;
+                border: 1px solid #e5e7eb;
+                max-width: 300px;
+            }
+        }
+        @layer utilities {
+            .hamburger {
+                position: absolute;
+            }
+
+            .hamburger-line {
+                height: 2px;
+                width: 24px;
+                background-color: #333;
+                margin: 4px 0;
+                transition: all 0.3 ease;
+            }
+
+            .open .line-1 {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .open .line-2 {
+                opacity: 0;
+            }
+
+            .open .line-3 {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .nav-container {
+                display: flex;
+                position: sticky;
+                height: 100vh;
+            }
+
+            .main-absolute {
+                position: absolute;
+                z-index: 1;
+                margin-top: 18px;
+                padding-top: 1em;
+            }
+
+            .btn-close-nav {
+                position: relative;
+                left: -10px;
+                background-color: #eff0f0;
+                border-radius: 0.1rem;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+                color: #3b82f6;
+                font-weight: 500;
+                font-size: 20px;
+                padding: 0.25rem 0.5rem;
+            }
+
             .btn-layered {
                 position: relative;
                 display: inline-block;
@@ -28,48 +110,84 @@
                 transition: background-color 0.3s;
                 margin-bottom: 1rem;
             }
+
             .btn-submit {
                 background-color: rgb(124 58 237);
+            }
+
+            /* Styling the list items */
+            .aside-list {
+                padding: 10px;
+                border-bottom: 1px solid #e5e7eb;
+                font-size: 1rem;
+                transition: background-color 0.3s ease;
+            }
+
+            /* Add hover effect on list items */
+            .aside-list:hover {
+                background-color: #f1f5f9;
             }
         }
     </style>
 </head>
-<body>
-    <div>
-        <h1 class="text-2xl font-bold mt-6 mb-8 px-3 text-blue-500">
-            Create New Contact
-        </h1>
+<body class="flex">
+    <div class="">
+        
     </div>
-    <form id="new-contact" class="flex flex-col px-12">
-        <input type="text" name="fname" id="fname" class="form-auto" placeholder="First Name">
-        <input type="text" name="lname" id="lname" class="form-auto" placeholder="Last Name">
-        <input type="text" name="company" id="company" class="form-auto" placeholder="Company">
-        <input type="text" name="job-title" id="job-title" class="form-auto" placeholder="Job Title">
-        <input type="text" name="email" id="email" class="form-auto" placeholder="Email">
-        <button class="btn-layered">+ Add another email</button>
-        <input type="text" name="phone" id="phone" class="form-auto" placeholder="Phone">
-        <button class="btn-layered">+ Add another phone</button>
-        <button class="btn-layered">+ Add address</button>
-        <label for="birthday" class="label-auto">Birthday</label>
-        <input type="text" name="date-birth" id="date-birth" class="form-auto" placeholder="Date">
-        <select name="month-birth" id="month-birth" class="form-auto">
-            <option value="" disabled selected>Month</option>
-            <option value="january">January</option>
-            <option value="february">February</option>
-            <option value="march">March</option>
-            <option value="april">April</option>
-            <option value="may">May</option>
-            <option value="june">June</option>
-            <option value="july">July</option>
-            <option value="august">August</option>
-            <option value="september">Septembr</option>
-            <option value="october">October</option>
-            <option value="november">November</option>
-            <option value="december">December</option>
-        </select>
-        <input type="text" name="year-birth" id="year-birth" class="form-auto" placeholder="Year">
-        <button type="submit" class="btn-submit btn-layered">Submit</button>
-    </form>
+    <div class="nav-container">
+        <button id="hamburger" class="hamburger focus:outline-none">
+            <div class="hamburger-line line-1"></div>
+            <div class="hamburger-line line-2"></div>
+            <div class="hamburger-line line-3"></div>
+        </button>
+        <aside id="nav-bar" class="nav-bar hidden">
+            <div>
+                <a href="./create/index.html">
+                    <button class="btn-layered">+ Create Contact</button>
+                </a>
+            </div>
+            <div class="aside-list">
+                Contacts
+            </div>
+            <div class="aside-list">
+                Merge and fix
+            </div>
+            <div class="aside-list">
+                Import
+            </div>
+        </aside>
+        <div id="close-nav" class="close-nav hidden">
+            <button class="btn-close-nav"> << </button>
+        </div>
+    </div>
+    <main id="contact" class="main-absolute">
+        <h1>
+            Contacts (1)
+        </h1>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Job title and company</th>
+            </thead>
+            <tbody>
+                <!-- Get from local Storage -->
+                <td>
+                    Hafizhun Soekiswo
+                </td>
+                <td>
+                    hsoekiswo@gmail.com
+                </td>
+                <td>
+                    0822XXXXXX50
+                </td>
+                <td>
+                    Self employed
+                </td>
+            </tbody>
+        </table>
+    </main>
 </body>
 <script src="index.js"></script>
 </html>
