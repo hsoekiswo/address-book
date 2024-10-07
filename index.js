@@ -1,34 +1,3 @@
-const form = document.getElementById('new-contact');
-
-if(form) {
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-    
-        const firstName = document.getElementById('fname').value;
-        const lastName = document.getElementById('lname').value;
-        const company = document.getElementById('company').value;
-        const jobTitle = document.getElementById('job-title').value;
-        const phone = document.getElementById('phone').value;
-        const dateBirth = document.getElementById('date-birth').value;
-        const monthBirth = document.getElementById('month-birth').value;
-        const yearBirth = document.getElementById('year-birth').value;
-        const birthDate = dateBirth + '-' + monthBirth + '-' + yearBirth;
-    
-        const newContact = {
-            firstName: firstName,
-            lastName: lastName,
-            company: company,
-            jobTitle: jobTitle,
-            phone: phone,
-            birthDate: birthDate
-        };
-    
-        localStorage.setItem('newContact', JSON.stringify(newContact));
-    
-        alert('Contact saved, please check on your local storage');
-    });
-}
-
 const hamburger = document.getElementById("hamburger");
 const navBar = document.getElementById("nav-bar");
 const closeNav = document.getElementById("close-nav");
@@ -47,3 +16,14 @@ closeNav.addEventListener("click", () => {
     closeNav.classList.add("hidden");
     contact.classList.add("main-absolute");
 })
+
+let contactValue = JSON.parse(localStorage.getItem('contact'))
+const fullName = contactValue.firstName + ' ' + contactValue.lastName
+const email = contactValue.email
+const phone = contactValue.phone
+const jobCompany = contactValue.jobTitle + ' at ' + contactValue.company
+
+document.getElementsByClassName('cell-name')[0].innerHTML = fullName;
+document.getElementsByClassName('cell-email')[0].innerHTML = email;
+document.getElementsByClassName('cell-phone')[0].innerHTML = phone;
+document.getElementsByClassName('cell-job')[0].innerHTML = jobCompany;
