@@ -25,7 +25,18 @@ contactForm.addEventListener('submit', function(event) {
         birthDate: birthDate
     };
 
-    localStorage.setItem('contact', JSON.stringify(newContact));
+    if (localStorage.getItem('contact')) {
+        let allContact = JSON.parse(localStorage.getItem('contact'));
+
+        allContact.push(newContact)
+        
+        localStorage.setItem('contact', JSON.stringify(allContact));
+    }
+    else {
+        let allContact = [newContact]
+        localStorage.setItem('contact', JSON.stringify(allContact));
+    }
+
 
     alert('Contact saved, please check on your local storage');
 });

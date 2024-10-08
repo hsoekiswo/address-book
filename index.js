@@ -17,13 +17,35 @@ closeNav.addEventListener("click", () => {
     contact.classList.add("main-absolute");
 })
 
+let tableContent = document.getElementById('table-content')
 let contactValue = JSON.parse(localStorage.getItem('contact'))
-const fullName = contactValue.firstName + ' ' + contactValue.lastName
-const email = contactValue.email
-const phone = contactValue.phone
-const jobCompany = contactValue.jobTitle + ' at ' + contactValue.company
 
-document.getElementsByClassName('cell-name')[0].innerHTML = fullName;
-document.getElementsByClassName('cell-email')[0].innerHTML = email;
-document.getElementsByClassName('cell-phone')[0].innerHTML = phone;
-document.getElementsByClassName('cell-job')[0].innerHTML = jobCompany;
+if (contactValue) {
+    for (let i = 0; i < contactValue.length; i++) {
+        let rowData = contactValue[i]
+        let row = document.createElement('tr')
+    
+        let fullName = rowData.firstName + ' ' + rowData.lastName;
+        let email = rowData.email;
+        let phone = rowData.phone;
+        let jobCompany = rowData.jobTitle + ' at ' + rowData.company;
+    
+        let cellName = document.createElement('td');
+        cellName.textContent = fullName;
+        row.appendChild(cellName);
+        
+        let cellEmail = document.createElement('td');
+        cellEmail.textContent = email;
+        row.appendChild(cellEmail);
+    
+        let cellPhone = document.createElement('td');
+        cellPhone.textContent = phone;
+        row.appendChild(cellPhone);
+    
+        let cellJob = document.createElement('td');
+        cellJob.textContent = jobCompany;
+        row.appendChild(cellJob);
+    
+        tableContent.appendChild(row);
+    }
+}
