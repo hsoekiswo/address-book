@@ -1,0 +1,25 @@
+# Node.js modules
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Build output
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.cache
+.DS_Store
+
+# npm package lock files
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+
+# Coverage reports (for testing)
+coverage/
