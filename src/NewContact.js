@@ -40,7 +40,7 @@ function NewContact() {
     return (
         <>
             <div>
-                <h1 class="text-2xl font-bold mt-6 mb-8 px-3 text-blue-500">
+                <h1 classNamea="text-2xl font-bold mt-6 mb-8 px-3 text-blue-500">
                     Create New Contact
                 </h1>
             </div>
@@ -76,8 +76,3 @@ function NewContact() {
 }
 
 export default NewContact;
-
-// Pseudocode
-// 1. mengisi data form kontak
-// 2. klik submit
-// 3. mencatat data form ke local storage

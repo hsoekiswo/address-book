@@ -1,21 +1,13 @@
-import React, { createContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { ViewContext } from './ViewContext';
 import './index.css';
-import MainContent from './MainContent';
-
-export const ContactContext = createContext();
 
 function Nav() {
+    const { setViewMode } = useContext(ViewContext)
+
     const [isActive, setActive] = useState(false);
     const toggleClass = () => {
         setActive(!isActive);
-    };
-
-    const [contactActive, setContactActive] = useState(true);
-    const handleContact = () => {
-        setContactActive((prev) => prev = true);
-    };
-    const handleNewContact = () => {
-        setContactActive((prev) => prev = false);
     };
 
     return (
@@ -28,9 +20,9 @@ function Nav() {
                 </button>
                 <aside id="nav-bar" className={`nav-bar ${isActive ? '' : 'hidden'}`}>
                     <div>
-                        <button className="btn-layered" onClick={handleNewContact}>+ Create Contact</button>
+                        <button className="btn-layered" onClick={() => {setViewMode((prev) => prev = 'new')}}>+ Create Contact</button>
                     </div>
-                    <div id="contact" className="aside-list" onClick={handleContact}>
+                    <div id="contact" className="aside-list" onClick={() => {setViewMode((prev) => prev = 'list')}}>
                         Contacts
                     </div>
                     <div className="aside-list">
@@ -44,9 +36,6 @@ function Nav() {
                     <button className="btn-close-nav" onClick={toggleClass}> ◀️ </button>
                 </div>
             </div>
-            <ContactContext.Provider value={contactActive}>
-                <MainContent/>
-            </ContactContext.Provider>
         </>
     );
 }
