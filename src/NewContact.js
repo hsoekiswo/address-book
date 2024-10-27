@@ -1,8 +1,11 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
+import { ViewContext } from './ViewContext';
 
 export const NewContactContext = createContext();
 
 function NewContact() {
+    const { setViewMode, viewMode } = useContext(ViewContext);
+
     const [newContact, setNewContact] = useState({
             id: 0,
             firstName: '',
@@ -26,34 +29,24 @@ function NewContact() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (!localStorage.getItem('contact')) {
-            // Initialize local storage
-            let allContact = [];
+        let allContact = JSON.parse(localStorage.getItem('contact')) || [];
 
-            // Add ID
-            setNewContact(prevContact => ({
-                ...prevContact,
-                id: prevContact.id + 1,
-            }))
+        // Set a new ID based on the last contact's ID, or set to 0 if no contacts exist
+        const newId = allContact.length > 0 ? allContact[allContact.length - 1].id + 1 : 0;
 
-            // Add state to local storage
-            allContact.push(newContact);
-            localStorage.setItem('contact', JSON.stringify(allContact));
-            
-            // To inform user that the data has been added to local storage
-            alert('Successfully input new contact');
-        } else {
-            // Using previous local storage
-            setNewContact(prevContact => ({
-                ...prevContact,
-                id: prevContact.id + 1,
-            }))
+        // Update newContact with the correct ID
+        const contactWithId = {
+            ...newContact,
+            id: newId,
+        };
 
-            let allContact = JSON.parse(localStorage.getItem('contact'));
-            allContact.push(newContact);
-            localStorage.setItem('contact', JSON.stringify(allContact));
-            alert('Successfully input new contact');
-        }
+        // Add the new contact to the array and save to local storage
+        allContact.push(contactWithId);
+        localStorage.setItem('contact', JSON.stringify(allContact));
+
+        // Notify the user and switch the view mode
+        alert('Successfully input new contact');
+        setViewMode('list');
     };
 
     return (
