@@ -52,11 +52,7 @@ function NewContact() {
     return (
         <>
             <div>
-<<<<<<< HEAD:src/NewContact.js
-                <h1 className="text-2xl font-bold mt-6 mb-8 px-3 text-blue-500">
-=======
                 <h1>
->>>>>>> dev-interface:src/NewContact.jsx
                     Create New Contact
                 </h1>
             </div>
