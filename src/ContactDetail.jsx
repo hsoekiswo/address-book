@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { ViewContext } from './ViewContext';
 import './index.css';
+import editIcon from './assets/icons/pencil.svg';
+import deleteIcon from './assets/icons/trash3.svg';
 
 function ContactDetail({ contact }) {
     const { setViewMode, viewMode } = useContext(ViewContext);
@@ -8,7 +10,7 @@ function ContactDetail({ contact }) {
         setViewMode('edit')
     };
     const handleDelete = () => {
-        const buttonDelete = document.getElementById('btn-delete');
+        const buttonDelete = document.getElementById('div-delete');
         buttonDelete.classList.remove('hidden')
     };
     const deleteContact = () => {
@@ -19,23 +21,40 @@ function ContactDetail({ contact }) {
         localStorage.setItem('contact', JSON.stringify(updatedContacts));
         alert(`Successfully deleting ${contact.firstName} ${contact.lastName}'s contact`);
         setViewMode('list');
+    };
+    const handleCancel = () => {
+        const buttonDelete = document.getElementById('div-delete');
+        if (buttonDelete) {
+            buttonDelete.classList.add('hidden')
+        }
     }
 
     // Render the contact details
     return (
         <>
-            <h1>Contact Detail</h1>
-            <h2>Contact Name: {contact.firstName} {contact.lastName}</h2>
-            <h3>Email: {contact.email}</h3>
-            <h3>Phone: {contact.phone}</h3>
-            <h3>Job: {contact.job} at {contact.company}</h3>
-            <button onClick={handleEdit}>Edit Contact</button>
-            <button onClick={handleDelete}>Delete Contact</button>
-            <div id="btn-delete" className="hidden">
-                <h1>Delete {contact.firstName} {contact.lastName} from Contacts?</h1>
-                <p>This contact will be permanently deleted</p>
-                <button>Cancel</button>
-                <button onClick={deleteContact}>Delete</button>
+            <div className='action-detail'>
+                <button onClick={handleEdit}><img src={editIcon} /></button>
+                <button onClick={handleDelete}><img src={deleteIcon} /></button>
+            </div>
+            <div className='detail-container'>
+                <h1>Contact Detail</h1>
+                <h2>{contact.firstName} {contact.lastName}</h2>
+                <h3>Email</h3>
+                <h3>{contact.email}</h3>
+                <h3>Phone</h3>
+                <h3>{contact.phone}</h3>
+                <h3>Job</h3>
+                <h3>{contact.job} at {contact.company}</h3>
+            </div>
+            <div id="div-delete" className="hidden">
+                <div className="delete-container">
+                    <h2 className='text-red-500'>Delete {contact.firstName} {contact.lastName} from Contacts?</h2>
+                    <p>This contact will be permanently deleted</p>
+                    <div className='delete-btn-container'>
+                        <button className='btn-layered btn-cancel' onClick={handleCancel}>Cancel</button>
+                        <button className='btn-layered btn-delete' onClick={deleteContact}>Delete</button>
+                    </div>
+                </div>
             </div>
         </>
     );

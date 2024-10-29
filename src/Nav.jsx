@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { ViewContext } from './ViewContext';
+import arrowIcon from './assets/icons/arrow-left.svg';
 import './index.css';
 
 function Nav() {
@@ -19,8 +20,13 @@ function Nav() {
                     <div className="hamburger-line line-3"></div>
                 </button>
                 <aside id="nav-bar" className={`nav-bar ${isActive ? '' : 'hidden'}`}>
+                    <div id="close-nav" className='close-nav'>
+                        <button className="btn-close-nav" onClick={toggleClass}>
+                            <img src={arrowIcon}/>
+                        </button>
+                    </div>
                     <div>
-                        <button className="btn-layered" onClick={() => {setViewMode((prev) => prev = 'new')}}>+ Create Contact</button>
+                        <button className="btn-layered mt-10" onClick={() => {setViewMode((prev) => prev = 'new')}}>+ Create Contact</button>
                     </div>
                     <div id="contact" className="aside-list" onClick={() => {setViewMode((prev) => prev = 'list')}}>
                         Contacts
@@ -32,9 +38,6 @@ function Nav() {
                         Import
                     </div>
                 </aside>
-                <div id="close-nav" className={`close-nav ${isActive ? '' : 'hidden'}`}>
-                    <button className="btn-close-nav" onClick={toggleClass}> ◀️ </button>
-                </div>
             </div>
         </>
     );

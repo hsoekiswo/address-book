@@ -23,6 +23,8 @@ function EditContact({ selectedContact }) {
         localStorage.setItem('contact', JSON.stringify(updatedContacts));
 
         alert(`Successfully editing ${contact.firstName} ${contact.lastName}'s contact`);
+
+        setViewMode('list');
     }
 
     return (

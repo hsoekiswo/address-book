@@ -52,11 +52,11 @@ function NewContact() {
     return (
         <>
             <div>
-                <h1 className="text-2xl font-bold mt-6 mb-8 px-3 text-blue-500">
+                <h1>
                     Create New Contact
                 </h1>
             </div>
-            <form id="new-contact" className="flex flex-col px-12">
+            <form id="new-contact">
                 <input type="text" name="firstName" id="firstName" placeholder="First Name" value={newContact.firstName} onChange={handleChange} />
                 <input type="text" name="lastName" id="lastName" placeholder="Last Name" value={newContact.lastName} onChange={handleChange} />
                 <input type="text" name="company" id="company" placeholder="Company" value={newContact.company} onChange={handleChange} />

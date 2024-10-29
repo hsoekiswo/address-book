@@ -60,32 +60,34 @@ function ContactList({ setSelectedContact }) {
         localStorage.setItem('contact', JSON.stringify(contactList));
     }
 
+    function getRandomEmoji() {
+        const min = 0x1F600;
+        const max = 0x1F64F;
+        
+        const randomCode = Math.floor(Math.random() * (max - min + 1)) + min;
+        return String.fromCodePoint(randomCode);
+    }
+
     return (
         <>
             {viewMode === 'list' && (
                 <>
                     <h1>Contacts ({contact.length})</h1>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone number</th>
-                                <th>Job title and company</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableContent">
+                    <div className='list-container'>
+                        <ul>
                             {contact.map((item, i) => (
-                                <tr key={i} onClick={() => handleViewDetail(item)}>
-                                    <td>{item.firstName} {item.lastName}</td>
-                                    <td>{item.email}</td>
-                                    <td>{item.phone}</td>
-                                    <td>{item.job} at {item.company}</td>
-                                </tr>
+                                <li className='list-contact' key={i} onClick={() => handleViewDetail(item)}>
+                                    <div className='contact-emoji'>
+                                        <p>{getRandomEmoji()}</p>
+                                    </div>
+                                    <div className='contact-name'>
+                                        <p>{item.firstName} {item.lastName}</p>
+                                    </div>
+                                </li>
                             ))}
-                        </tbody>
-                    </table>
-                    <button onClick={generateContact}>generate contact</button>
+                        </ul>
+                        <button onClick={generateContact} className='btn-layered mt-6'>Generate Contact</button>
+                    </div>
                 </>
             )}
         </>
