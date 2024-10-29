@@ -102,14 +102,10 @@
         @apply text-blue-500 bg-slate-100 cursor-pointer;
     }
 
-    /* .hidden {
+    .hidden {
         display: none;
         visibility: hidden;
     }
-
-    .nav-bar.hidden {
-        @apply pointer-events-none opacity-0 z-0;
-    } */
 
     .list-container {
         @apply flex flex-col items-center justify-center;
