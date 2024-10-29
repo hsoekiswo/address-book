@@ -32,33 +32,41 @@ function ContactDetail({ contact }) {
 
     // Render the contact details
     return (
-        <>
-            <div className='action-detail'>
+        <div>
+            <div className='actions-container'>
                 <div className='btn-icon-container'>
-                    <button onClick={() => {setViewMode((prev) => prev = 'list')}}>
-                        <img className='btn-icon' src={arrowIcon}/>
+                    <button className='btn-icon' onClick={() => {setViewMode((prev) => prev = 'list')}}>
+                        <img className='btn-icon-img' src={arrowIcon}/>
                     </button>
                 </div>
                 <div className='btn-icon-container'>
-                    <button onClick={handleEdit}>
-                        <img className='btn-icon' src={editIcon} />
+                    <button className='btn-icon' onClick={handleEdit}>
+                        <img className='btn-icon-img' src={editIcon} />
                     </button>
                 </div>
                 <div className='btn-icon-container'>
-                    <button onClick={handleDelete}>
-                        <img className='btn-icon' src={deleteIcon} />
+                    <button className='btn-icon' onClick={handleDelete}>
+                        <img className='btn-icon-img' src={deleteIcon} />
                     </button>
                 </div>
             </div>
             <div className='detail-container'>
                 <h1>Contact Detail</h1>
                 <h2>{contact.firstName} {contact.lastName}</h2>
-                <h3>Email</h3>
-                <h3>{contact.email}</h3>
                 <h3>Phone</h3>
-                <h3>{contact.phone}</h3>
-                <h3>Job</h3>
-                <h3>{contact.job} at {contact.company}</h3>
+                <h3 className='font-medium text-red-800'>{contact.phone}</h3>
+                {contact.email && (
+                    <>
+                        <h3>Email</h3>
+                        <h3 className='font-medium text-red-800'>{contact.email}</h3>
+                    </>
+                )}
+                {contact.job && contact.company && (
+                <>
+                    <h3>Job</h3>
+                    <h3 className='font-medium text-red-800'>{contact.job} at {contact.company}</h3>
+                </>
+                )}
             </div>
             <div id="div-delete" className="hidden">
                 <div className="delete-container">
@@ -70,7 +78,7 @@ function ContactDetail({ contact }) {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

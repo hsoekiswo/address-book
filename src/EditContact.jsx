@@ -31,16 +31,18 @@ function EditContact({ selectedContact }) {
     }
 
     return (
-        <>  
-            <div className='action-detail'>
+        <div>  
+            <div className='actions-container'>
                 <div className='btn-icon-container'>
-                    <button onClick={() => {setViewMode((prev) => prev = 'list')}}>
-                        <img className='btn-icon' src={arrowIcon}/>
+                    <button className='btn-icon' onClick={() => {setViewMode((prev) => prev = 'list')}}>
+                        <img className='btn-icon-img' src={arrowIcon}/>
                     </button>
                 </div>
             </div>
-            <div>
+            <div className='header-container'>
                 <h1>Edit Contact</h1>
+            </div>
+            <div className="form-container">
                 <form>
                     <label>First Name</label>
                     <input type='text' name="firstName" id="firstNameEdit" placeholder={contact.firstName} value={contact.firstName} onChange={handleChange} ></input>
@@ -77,7 +79,7 @@ function EditContact({ selectedContact }) {
                     <button className="btn-layered btn-submit" type="submit" onClick={handleSubmit}>Submit</button>
                 </form>
             </div>
-        </>
+        </div>
     );
 }
 

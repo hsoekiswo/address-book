@@ -72,8 +72,10 @@ function ContactList({ setSelectedContact }) {
     return (
         <>
             {viewMode === 'list' && (
-                <>
-                    <h1>Contacts ({contact.length})</h1>
+                <div className='main-container'>
+                    <div className='header-container'>
+                        <h1>Contacts ({contact.length})</h1>
+                    </div>
                     <div className='list-container'>
                         <ul>
                             {contact.map((item, i) => (
@@ -89,7 +91,7 @@ function ContactList({ setSelectedContact }) {
                         </ul>
                         <button onClick={generateContact} className='btn-layered mt-6'>Generate Contact</button>
                     </div>
-                </>
+                </div>
             )}
         </>
     );

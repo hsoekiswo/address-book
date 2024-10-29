@@ -30,47 +30,54 @@ function NewContact() {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        let allContact = JSON.parse(localStorage.getItem('contact')) || [];
+        const form = document.getElementById("new-contact");
 
-        // Set a new ID based on the last contact's ID, or set to 0 if no contacts exist
-        const newId = allContact.length > 0 ? allContact[allContact.length - 1].id + 1 : 0;
-
-        // Update newContact with the correct ID
-        const contactWithId = {
-            ...newContact,
-            id: newId,
-        };
-
-        // Add the new contact to the array and save to local storage
-        allContact.push(contactWithId);
-        localStorage.setItem('contact', JSON.stringify(allContact));
-
-        // Notify the user and switch the view mode
-        alert('Successfully input new contact');
-        setViewMode('list');
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            alert("Please fill in all required fields.");
+        } else {
+            event.preventDefault();
+            let allContact = JSON.parse(localStorage.getItem('contact')) || [];
+    
+            // Set a new ID based on the last contact's ID, or set to 0 if no contacts exist
+            const newId = allContact.length > 0 ? allContact[allContact.length - 1].id + 1 : 0;
+    
+            // Update newContact with the correct ID
+            const contactWithId = {
+                ...newContact,
+                id: newId,
+            };
+    
+            // Add the new contact to the array and save to local storage
+            allContact.push(contactWithId);
+            localStorage.setItem('contact', JSON.stringify(allContact));
+    
+            // Notify the user and switch the view mode
+            alert('Successfully input new contact');
+            setViewMode('list');
+        }
     };
 
     return (
-        <>
-            <div className='action-detail'>
+        <div>
+            <div className='actions-container'>
                 <div className='btn-icon-container'>
-                    <button onClick={() => {setViewMode((prev) => prev = 'list')}}>
-                        <img className='btn-icon' src={arrowIcon}/>
+                    <button className='btn-icon' onClick={() => {setViewMode((prev) => prev = 'list')}}>
+                        <img className='btn-icon-img' src={arrowIcon}/>
                     </button>
                 </div>
             </div>
-            <div>
-                <h1>
-                    Create New Contact
-                </h1>
+            <h1 className='header-container'>
+                Create New Contact
+            </h1>
+            <div className='form-container'>
                 <form id="new-contact">
-                    <input type="text" name="firstName" id="firstName" placeholder="First Name" value={newContact.firstName} onChange={handleChange} />
-                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" value={newContact.lastName} onChange={handleChange} />
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name" value={newContact.firstName} onChange={handleChange} required />
+                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" value={newContact.lastName} onChange={handleChange} required />
                     <input type="text" name="company" id="company" placeholder="Company" value={newContact.company} onChange={handleChange} />
                     <input type="text" name="job" id="job" placeholder="Job Title" value={newContact.job} onChange={handleChange} />
                     <input type="text" name="email" id="email" placeholder="Email" value={newContact.email} onChange={handleChange} />
-                    <input type="text" name="phone" id="phone" placeholder="Phone" value={newContact.phone} onChange={handleChange} />
+                    <input type="text" name="phone" id="phone" placeholder="Phone" value={newContact.phone} onChange={handleChange} required />
                     <label htmlFor="birthday">Birthday</label>
                     <input type="text" name="dateBirth" id="dateBirth" placeholder="Date" value={newContact.dateBirth} onChange={handleChange} />
                     <select name="monthBirth" id="monthBirth" value={newContact.monthBirth} onChange={handleChange} >
@@ -92,7 +99,7 @@ function NewContact() {
                     <button className="btn-layered btn-submit" type="submit" onClick={handleSubmit}>Submit</button>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
 
