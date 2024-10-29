@@ -1,5 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { ViewContext } from './ViewContext';
+<<<<<<< HEAD:src/Nav.js
+=======
+import arrowIcon from './assets/icons/arrow-left.svg';
+>>>>>>> dev-interface:src/Nav.jsx
 import './index.css';
 
 function Nav() {
@@ -19,9 +23,20 @@ function Nav() {
                     <div className="hamburger-line line-3"></div>
                 </button>
                 <aside id="nav-bar" className={`nav-bar ${isActive ? '' : 'hidden'}`}>
+<<<<<<< HEAD:src/Nav.js
                     <div>
                         <button className="btn-layered" onClick={() => {setViewMode((prev) => prev = 'new')}}>+ Create Contact</button>
                     </div>
+=======
+                    <div id="close-nav" className='close-nav'>
+                        <button className="btn-close-nav" onClick={toggleClass}>
+                            <img src={arrowIcon}/>
+                        </button>
+                    </div>
+                    <div>
+                        <button className="btn-layered mt-10" onClick={() => {setViewMode((prev) => prev = 'new')}}>+ Create Contact</button>
+                    </div>
+>>>>>>> dev-interface:src/Nav.jsx
                     <div id="contact" className="aside-list" onClick={() => {setViewMode((prev) => prev = 'list')}}>
                         Contacts
                     </div>
@@ -32,9 +47,6 @@ function Nav() {
                         Import
                     </div>
                 </aside>
-                <div id="close-nav" className={`close-nav ${isActive ? '' : 'hidden'}`}>
-                    <button className="btn-close-nav" onClick={toggleClass}> ◀️ </button>
-                </div>
             </div>
         </>
     );
