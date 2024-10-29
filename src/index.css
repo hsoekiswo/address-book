@@ -35,10 +35,6 @@
         @apply bg-gray-50 p-5 rounded-lg border border-gray-200 min-h-full;
     }
 
-    aside:hidden {
-        @apply pointer-events-none opacity-0 z-0;
-    }
-
     form {
         @apply flex flex-col px-12;
     }
@@ -61,15 +57,15 @@
     }
 
     .nav-container {
-        @apply flex sticky h-screen z-10 w-5/12;
+        @apply relative flex h-screen w-5/12;
     }
 
     .nav-bar {
-        @apply w-full;
+        @apply absolute top-0 left-0 w-full min-h-full z-20 bg-white shadow-lg;
     }
 
     .close-nav {
-        @apply absolute top-0 right-0 h-10 w-10;
+        @apply absolute top-2 right-2 h-10 w-10;
     }
     
     .btn-close-nav {
@@ -106,14 +102,14 @@
         @apply text-blue-500 bg-slate-100 cursor-pointer;
     }
 
-    .hidden {
+    /* .hidden {
         display: none;
         visibility: hidden;
     }
 
     .nav-bar.hidden {
         @apply pointer-events-none opacity-0 z-0;
-    }
+    } */
 
     .list-container {
         @apply flex flex-col items-center justify-center;

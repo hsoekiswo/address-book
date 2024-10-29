@@ -71,7 +71,7 @@ function ContactList({ setSelectedContact }) {
 
     return (
         <>
-            {viewMode === 'list' && (
+            {viewMode === 'list' && contact.length > 0 && (
                 <div className='main-container'>
                     <div className='header-container'>
                         <h1>Contacts ({contact.length})</h1>
@@ -89,7 +89,19 @@ function ContactList({ setSelectedContact }) {
                                 </li>
                             ))}
                         </ul>
-                        <button onClick={generateContact} className='btn-layered mt-6'>Generate Contact</button>
+                    </div>
+                </div>
+            )}
+
+            {viewMode === 'list' && contact.length === 0 && (
+                <div className='main-container'>
+                    <div className='header-container'>
+                        <h1 className='text-red-700'>No Contact Found</h1>
+                        <p>If you want to explore quickly, you can click <code className='bg-slate-100 rounded-lg'>Generate Contact</code> button.</p>
+                        <p>Dummy contacts will be created!</p>
+                    </div>
+                    <div className='header-container'>
+                        <button className='btn-layered mt-6 ml-3 cursor-pointer' onClick={generateContact} >Generate Contact</button>
                     </div>
                 </div>
             )}
