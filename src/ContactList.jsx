@@ -58,6 +58,7 @@ function ContactList({ setSelectedContact }) {
             },
         ]
         localStorage.setItem('contact', JSON.stringify(contactList));
+        location.reload();
     }
 
     function getRandomEmoji() {
