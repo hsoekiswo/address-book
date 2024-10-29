@@ -3,6 +3,7 @@ import { ViewContext } from './ViewContext';
 import './index.css';
 import editIcon from './assets/icons/pencil.svg';
 import deleteIcon from './assets/icons/trash3.svg';
+import arrowIcon from './assets/icons/arrow-left.svg';
 
 function ContactDetail({ contact }) {
     const { setViewMode, viewMode } = useContext(ViewContext);
@@ -33,8 +34,21 @@ function ContactDetail({ contact }) {
     return (
         <>
             <div className='action-detail'>
-                <button onClick={handleEdit}><img src={editIcon} /></button>
-                <button onClick={handleDelete}><img src={deleteIcon} /></button>
+                <div className='btn-icon-container'>
+                    <button onClick={() => {setViewMode((prev) => prev = 'list')}}>
+                        <img className='btn-icon' src={arrowIcon}/>
+                    </button>
+                </div>
+                <div className='btn-icon-container'>
+                    <button onClick={handleEdit}>
+                        <img className='btn-icon' src={editIcon} />
+                    </button>
+                </div>
+                <div className='btn-icon-container'>
+                    <button onClick={handleDelete}>
+                        <img className='btn-icon' src={deleteIcon} />
+                    </button>
+                </div>
             </div>
             <div className='detail-container'>
                 <h1>Contact Detail</h1>

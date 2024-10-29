@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { ViewContext } from './ViewContext';
-import arrowIcon from './assets/icons/arrow-left.svg';
+import doubleLeftIcon from './assets/icons/chevron-double-left.svg';
 import './index.css';
 
 function Nav() {
@@ -22,7 +22,7 @@ function Nav() {
                 <aside id="nav-bar" className={`nav-bar ${isActive ? '' : 'hidden'}`}>
                     <div id="close-nav" className='close-nav'>
                         <button className="btn-close-nav" onClick={toggleClass}>
-                            <img src={arrowIcon}/>
+                            <img className='btn-icon' src={doubleLeftIcon}/>
                         </button>
                     </div>
                     <div>

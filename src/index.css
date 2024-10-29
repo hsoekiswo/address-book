@@ -4,7 +4,7 @@
 
 @layer base {
     h1 {
-        @apply text-4xl font-bold mt-6 mb-8 px-4 text-blue-500;
+        @apply text-3xl font-bold mt-6 mb-8 px-4 text-blue-500;
     }
 
     h2 {
@@ -86,7 +86,7 @@
     }
 
     .nav-container {
-        @apply flex sticky h-screen z-10 w-4/12;
+        @apply flex sticky h-screen z-10 w-5/12;
     }
 
     .nav-bar {
@@ -94,7 +94,7 @@
     }
 
     .close-nav {
-        @apply absolute top-0 right-0 h-12 w-12 z-10;
+        @apply absolute top-0 right-0 h-12 w-12;
     }
     
     .btn-close-nav {
@@ -105,8 +105,8 @@
         @apply bg-blue-500;
     }
 
-    .btn-close-nav img {
-        @apply w-10 h-10;
+    .btn-icon {
+        @apply w-7 h-7;
     }
 
     .main-content {
@@ -149,15 +149,15 @@
     }
 
     .contact-emoji {
-        @apply rounded-full h-32 w-32 bg-gray-100 mt-6;
+        @apply rounded-full h-28 w-28 bg-gray-100 mt-6;
     }
 
     .contact-emoji p {
-        @apply text-7xl;
+        @apply text-6xl;
     }
 
     .contact-name p {
-        @apply text-4xl cursor-pointer;
+        @apply text-3xl cursor-pointer;
     }
 
     .contact-name p:hover {
@@ -181,11 +181,15 @@
     }
 
     .detail-container {
-        @apply flex flex-col items-center w-3/4 max-w-lg mx-auto pt-10;
+        @apply flex flex-col items-center max-w-lg mx-auto pt-8;
     }
 
     .detail-container h3 {
         @apply text-start;
+    }
+
+    .btn-icon-container {
+        @apply flex items-center justify-center w-12;
     }
 
     #div-delete {

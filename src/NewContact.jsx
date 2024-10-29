@@ -1,5 +1,7 @@
 import React, { useState, createContext, useContext } from 'react';
 import { ViewContext } from './ViewContext';
+import arrowIcon from './assets/icons/arrow-left.svg';
+import './index.css';
 
 export const NewContactContext = createContext();
 
@@ -51,38 +53,45 @@ function NewContact() {
 
     return (
         <>
+            <div className='action-detail'>
+                <div className='btn-icon-container'>
+                    <button onClick={() => {setViewMode((prev) => prev = 'list')}}>
+                        <img className='btn-icon' src={arrowIcon}/>
+                    </button>
+                </div>
+            </div>
             <div>
                 <h1>
                     Create New Contact
                 </h1>
+                <form id="new-contact">
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name" value={newContact.firstName} onChange={handleChange} />
+                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" value={newContact.lastName} onChange={handleChange} />
+                    <input type="text" name="company" id="company" placeholder="Company" value={newContact.company} onChange={handleChange} />
+                    <input type="text" name="job" id="job" placeholder="Job Title" value={newContact.job} onChange={handleChange} />
+                    <input type="text" name="email" id="email" placeholder="Email" value={newContact.email} onChange={handleChange} />
+                    <input type="text" name="phone" id="phone" placeholder="Phone" value={newContact.phone} onChange={handleChange} />
+                    <label htmlFor="birthday">Birthday</label>
+                    <input type="text" name="dateBirth" id="dateBirth" placeholder="Date" value={newContact.dateBirth} onChange={handleChange} />
+                    <select name="monthBirth" id="monthBirth" value={newContact.monthBirth} onChange={handleChange} >
+                        <option value="" disabled>Month</option>
+                        <option value="january">January</option>
+                        <option value="february">February</option>
+                        <option value="march">March</option>
+                        <option value="april">April</option>
+                        <option value="may">May</option>
+                        <option value="june">June</option>
+                        <option value="july">July</option>
+                        <option value="august">August</option>
+                        <option value="september">September</option>
+                        <option value="october">October</option>
+                        <option value="november">November</option>
+                        <option value="december">December</option>
+                    </select>
+                    <input type="text" name="yearBirth" id="yearBirth" placeholder="Year" value={newContact.yearBirth} onChange={handleChange} />
+                    <button className="btn-layered btn-submit" type="submit" onClick={handleSubmit}>Submit</button>
+                </form>
             </div>
-            <form id="new-contact">
-                <input type="text" name="firstName" id="firstName" placeholder="First Name" value={newContact.firstName} onChange={handleChange} />
-                <input type="text" name="lastName" id="lastName" placeholder="Last Name" value={newContact.lastName} onChange={handleChange} />
-                <input type="text" name="company" id="company" placeholder="Company" value={newContact.company} onChange={handleChange} />
-                <input type="text" name="job" id="job" placeholder="Job Title" value={newContact.job} onChange={handleChange} />
-                <input type="text" name="email" id="email" placeholder="Email" value={newContact.email} onChange={handleChange} />
-                <input type="text" name="phone" id="phone" placeholder="Phone" value={newContact.phone} onChange={handleChange} />
-                <label htmlFor="birthday">Birthday</label>
-                <input type="text" name="dateBirth" id="dateBirth" placeholder="Date" value={newContact.dateBirth} onChange={handleChange} />
-                <select name="monthBirth" id="monthBirth" value={newContact.monthBirth} onChange={handleChange} >
-                    <option value="" disabled>Month</option>
-                    <option value="january">January</option>
-                    <option value="february">February</option>
-                    <option value="march">March</option>
-                    <option value="april">April</option>
-                    <option value="may">May</option>
-                    <option value="june">June</option>
-                    <option value="july">July</option>
-                    <option value="august">August</option>
-                    <option value="september">September</option>
-                    <option value="october">October</option>
-                    <option value="november">November</option>
-                    <option value="december">December</option>
-                </select>
-                <input type="text" name="yearBirth" id="yearBirth" placeholder="Year" value={newContact.yearBirth} onChange={handleChange} />
-                <button className="btn-layered btn-submit" type="submit" onClick={handleSubmit}>Submit</button>
-            </form>
         </>
     )
 }
