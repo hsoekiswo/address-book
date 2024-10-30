@@ -31,7 +31,7 @@ function Nav() {
                 <div id="contact" className="aside-list" onClick={() => {setViewMode((prev) => prev = 'list')}}>
                     Contacts
                 </div>
-                <div className="aside-list">
+                <div id="merge-fix" className="aside-list" onClick={() => {setViewMode((prev) => prev = 'merge')}}>
                     Merge and fix
                 </div>
                 <div className="aside-list">
