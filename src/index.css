@@ -206,4 +206,16 @@
     .actions-container button {
         @apply inline-flex;
     }
+
+    .search-container {
+        @apply flex flex-row items-center justify-center bg-slate-200 w-max rounded-xl;
+    }
+
+    .search-icon {
+        @apply w-6 h-6 mx-2;
+    }
+
+    .search-bar {
+        @apply ml-2 m-1 bg-slate-200 border-none;
+    }
 }

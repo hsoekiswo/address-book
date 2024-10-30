@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ViewContext } from './ViewContext';
+import searchIcon from './assets/icons/search.svg'
 import './index.css';
 
 function ContactList({ setSelectedContact }) {
     const { setViewMode, viewMode } = useContext(ViewContext);
-    const [contact, setContact] = useState([]);
+    const [contacts, setContact] = useState([]);
+    const [filteredContacts, setFilteredContacts] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Fetch contacts from localStorage
     useEffect(() => {
         const contactValue = JSON.parse(localStorage.getItem('contact')) || [];
         setContact(contactValue);
+        setFilteredContacts(contactValue);
     }, []);
 
     // Handle view detail on contact click
@@ -69,16 +73,36 @@ function ContactList({ setSelectedContact }) {
         return String.fromCodePoint(randomCode);
     }
 
+    useEffect(() => {
+        const result = contacts.filter((contact) => (contact.firstName + ' ' + contact.lastName).toLowerCase().includes(searchQuery.toLowerCase()));
+        setFilteredContacts(result);
+    }, [searchQuery, contacts])
+
     return (
         <>
-            {viewMode === 'list' && contact.length > 0 && (
+            {viewMode === 'list' && contacts.length > 0 && (
                 <div className='main-container'>
                     <div className='header-container'>
-                        <h1>Contacts ({contact.length})</h1>
+                        <h1>Contacts ({filteredContacts.length})</h1>
+                    </div>
+                    <div className='mb-2'>
+                        <form>
+                            <div className='search-container'>
+                                <img className='search-icon' src={searchIcon} alt='search icon' />
+                                <input
+                                    type='text'
+                                    id='search-bar'
+                                    className='search-bar'
+                                    placeholder='Search Contact'
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                            </div>
+                        </form>
                     </div>
                     <div className='list-container'>
                         <ul>
-                            {contact.map((item, i) => (
+                            {filteredContacts.map((item, i) => (
                                 <li className='list-contact' key={i} onClick={() => handleViewDetail(item)}>
                                     <div className='contact-emoji'>
                                         <p>{getRandomEmoji()}</p>
@@ -93,14 +117,14 @@ function ContactList({ setSelectedContact }) {
                 </div>
             )}
 
-            {viewMode === 'list' && contact.length === 0 && (
+            {viewMode === 'list' && contacts.length === 0 && (
                 <div className='main-container'>
-                    <div className='header-container'>
+                    <div className='list-container'>
                         <h1 className='text-red-700'>No Contact Found</h1>
                         <p>If you want to explore quickly, you can click <code className='bg-slate-100 rounded-lg'>Generate Contact</code> button.</p>
                         <p>Dummy contacts will be created!</p>
                     </div>
-                    <div className='header-container'>
+                    <div className='list-container'>
                         <button className='btn-layered mt-6 ml-3 cursor-pointer' onClick={generateContact} >Generate Contact</button>
                     </div>
                 </div>
