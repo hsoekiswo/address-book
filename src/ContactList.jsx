@@ -78,6 +78,18 @@ function ContactList({ setSelectedContact }) {
         setFilteredContacts(result);
     }, [searchQuery, contacts])
 
+    function hasDuplicateValue(arr, key) {
+        const values = new Set();
+
+        return arr.some((item) => {
+            if (values.has(item[key])) {
+                return true;
+            }
+            values.add(item[key]);
+            return false;
+        });
+    }
+
     return (
         <>
             {viewMode === 'list' && contacts.length > 0 && (

@@ -72,14 +72,14 @@ function NewContact() {
             </h1>
             <div className='form-container'>
                 <form id="new-contact">
-                    <input type="text" name="firstName" id="firstName" placeholder="First Name" value={newContact.firstName} onChange={handleChange} required />
-                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" value={newContact.lastName} onChange={handleChange} required />
-                    <input type="text" name="company" id="company" placeholder="Company" value={newContact.company} onChange={handleChange} />
-                    <input type="text" name="job" id="job" placeholder="Job Title" value={newContact.job} onChange={handleChange} />
-                    <input type="text" name="email" id="email" placeholder="Email" value={newContact.email} onChange={handleChange} />
-                    <input type="text" name="phone" id="phone" placeholder="Phone" value={newContact.phone} onChange={handleChange} required />
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name" value={newContact.firstName} onChange={handleChange} autocomplete="off" required />
+                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" value={newContact.lastName} onChange={handleChange} autocomplete="off" required />
+                    <input type="text" name="company" id="company" placeholder="Company" value={newContact.company} onChange={handleChange} autocomplete="off" />
+                    <input type="text" name="job" id="job" placeholder="Job Title" value={newContact.job} onChange={handleChange} autocomplete="off" />
+                    <input type="text" name="email" id="email" placeholder="Email" value={newContact.email} onChange={handleChange} autocomplete="off" />
+                    <input type="text" name="phone" id="phone" placeholder="Phone" value={newContact.phone} onChange={handleChange} autocomplete="off" required />
                     <label htmlFor="birthday">Birthday</label>
-                    <input type="text" name="dateBirth" id="dateBirth" placeholder="Date" value={newContact.dateBirth} onChange={handleChange} />
+                    <input type="text" name="dateBirth" id="dateBirth" placeholder="Date" value={newContact.dateBirth} onChange={handleChange} autocomplete="off" />
                     <select name="monthBirth" id="monthBirth" value={newContact.monthBirth} onChange={handleChange} >
                         <option value="" disabled>Month</option>
                         <option value="january">January</option>
@@ -95,7 +95,7 @@ function NewContact() {
                         <option value="november">November</option>
                         <option value="december">December</option>
                     </select>
-                    <input type="text" name="yearBirth" id="yearBirth" placeholder="Year" value={newContact.yearBirth} onChange={handleChange} />
+                    <input type="text" name="yearBirth" id="yearBirth" placeholder="Year" value={newContact.yearBirth} onChange={handleChange} autocomplete="off" />
                     <button className="btn-layered btn-submit" type="submit" onClick={handleSubmit}>Submit</button>
                 </form>
             </div>
